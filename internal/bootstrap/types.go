@@ -3,8 +3,16 @@ package bootstrap
 
 import (
 	"github.com/sev-2/raiden/pkg/resource"
+	"medpointssystem/internal/types"
 )
 
 func RegisterTypes() {
-	resource.RegisterTypes()
+	resource.RegisterTypes(
+		&types.Doctors{},
+		&types.Payments{},
+		&types.Reservations{},
+		&types.Roles{},
+		&types.Schedule{},
+		&types.Users{},
+	)
 }
