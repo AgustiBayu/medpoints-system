@@ -1,0 +1,80 @@
+openapi: '3.0.3'
+info:
+  title: Doctor Rest Api
+  description: API Spec for Doctor Restfull API
+  version: '1.0'
+servers:
+  - url: http://127.0.0.1:8002/rest/v1
+paths:
+  /doctor:
+    post:
+      summary: Menambah data Doctor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nama:
+                  type: string
+                speality:
+                  type: string
+      responses:
+        '201':
+          description: "Created"
+
+    get:
+      summary: menampilkan data semua data doctor
+      description: menampilkan tanpa menggunkan paginate
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nama:
+                      type: string
+                    speality:
+                      type: string
+  /doctor?id=eq.id:  
+    patch:
+      summary: merubah data berdasarkan field dan id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: data doctor id yang akan diambil
+          schema:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nama:
+                  type: string
+                speality:
+                  type: string
+      responses:
+        '204':
+          description: No Content  
+    delete:
+      summary: menghapus data doctor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: data doctor id yang akan diambil
+          schema:
+            type: number
+      responses:
+        '204':
+          description: "No Content"           
